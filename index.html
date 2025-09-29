@@ -1,23 +1,89 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>اختبار تجريبي</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>اختبار محاكي</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>اختبار تجريبي</h1>
-    <div id="quiz"></div>
-    <div class="navigation">
-      <button id="prev">السابق</button>
-      <button id="next">التالي</button>
-      <button id="submit">إنهاء</button>
-    </div>
-    <div id="timer"></div>
+  <div class="container">
+
+    <!-- Start Screen -->
+    <section id="startScreen" class="view">
+      <h1>اختر نوع الاختبار</h1>
+      <div class="choices">
+        <div class="card choice" id="quickChoice" tabindex="0" role="button">
+          <div class="icon">⚡</div>
+          <h3>اختبار محاكي سريع</h3>
+          <p>24 سؤال — 25 دقيقة (قسم واحد)</p>
+        </div>
+
+        <div class="card choice" id="realChoice" tabindex="0" role="button">
+          <div class="icon">🧭</div>
+          <h3>اختبار محاكي واقعي</h3>
+          <p>120 سؤال — 5 أقسام × 24 سؤال — كل قسم 25 دقيقة</p>
+        </div>
+      </div>
+      <p class="muted">تستطيع حفظ التقدّم مؤقتًا في جهازك — لا يتم إرسال بيانات لأي سيرفر في النسخة المحلية هذه.</p>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="quizScreen" class="view hidden">
+      <header class="quiz-header">
+        <div class="left">
+          <div id="modeLabel" class="badge">وضع</div>
+          <div id="sectionLabel" class="badge">القسم 1</div>
+        </div>
+        <div class="center">
+          <div id="qCounter">سؤال 1 / 24</div>
+        </div>
+        <div class="right">
+          <button id="flagBtn" class="icon-btn" title="وضع/إزالة علامة">🚩</button>
+        </div>
+      </header>
+
+      <main class="quiz-main">
+        <div id="timerBarWrap">
+          <div id="timerText">25:00</div>
+          <div id="timerBar"><div id="timerBarFill"></div></div>
+        </div>
+
+        <div class="card question-card">
+          <div id="questionText" class="question-text">نص السؤال يظهر هنا</div>
+          <div id="options" class="options"></div>
+        </div>
+
+        <div class="controls">
+          <button id="prevBtn" class="btn">السابق</button>
+          <button id="nextBtn" class="btn primary">التالي</button>
+        </div>
+      </main>
+    </section>
+
+    <!-- Review Screen (after section) -->
+    <section id="reviewScreen" class="view hidden">
+      <h2>مراجعة القسم <span id="reviewSectionNum"></span></h2>
+      <p class="muted">أمام كل سؤال يظهر حالته: مجاب ✅ — غير مجاب ❌ — عليه علامة 🚩</p>
+      <div id="reviewGrid" class="review-grid"></div>
+
+      <div class="review-controls">
+        <button id="backToFirst" class="btn">العودة لأول سؤال</button>
+        <button id="finishSectionBtn" class="btn primary">إنهاء القسم →</button>
+      </div>
+    </section>
+
+    <!-- Final Summary -->
+    <section id="summaryScreen" class="view hidden">
+      <h2>الملخّص النهائي</h2>
+      <div id="summaryContent"></div>
+      <div class="review-controls">
+        <button id="restartBtn" class="btn">عودة للصفحة الرئيسية</button>
+      </div>
+    </section>
+
   </div>
 
-  <!-- مهم: تحميل السكربت بعد الـ HTML -->
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
