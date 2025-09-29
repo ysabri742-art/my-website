@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الاختبار</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <h2 id="section-title">القسم</h2>
+    <div id="timer">الوقت المتبقي: 25:00</div>
+    <div id="question-box">
+      <p id="question-text">تحميل السؤال...</p>
+      <div id="answers"></div>
+      <button onclick="markQuestion()">⭐ وضع علامة مرجعية</button>
+    </div>
+    <div class="navigation">
+      <button onclick="prevQuestion()">⬅️ السابق</button>
+      <button onclick="nextQuestion()">➡️ التالي</button>
+      <button onclick="reviewSection()">📋 مراجعة القسم</button>
+    </div>
+  </div>
+  <script src="quiz.js"></script>
+</body>
+</html>
