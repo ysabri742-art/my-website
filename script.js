@@ -8,3 +8,4 @@ function startRealMock() {
   localStorage.setItem("section", "1");
   window.location.href = "quiz.html";
 }
+
