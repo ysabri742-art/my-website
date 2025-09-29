@@ -1,9 +1,9 @@
 body {
   font-family: "Cairo", sans-serif;
+  background: #f9f9f9;
+  text-align: center;
   margin: 0;
   padding: 0;
-  background: #f4f4f9;
-  text-align: center;
 }
 
 header {
@@ -13,13 +13,14 @@ header {
 }
 
 main {
-  margin: 30px;
+  margin: 20px;
 }
 
 button {
   background: #03dac6;
   border: none;
   padding: 12px 24px;
+  margin: 10px;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
@@ -30,8 +31,35 @@ button:hover {
   color: white;
 }
 
-footer {
-  margin-top: 40px;
+.form {
+  margin-top: 20px;
+  text-align: left;
+  display: inline-block;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+fieldset {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
   padding: 10px;
-  background: #ddd;
 }
