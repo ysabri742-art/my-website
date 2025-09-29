@@ -1,69 +1,83 @@
 const questions = [
-  { text: "ما اسمك؟", options: ["أحمد", "محمود", "سارة", "غير ذلك"] },
-  { text: "كم عمرك؟", options: ["أقل من 18", "18-25", "26-35", "35+"] },
-  { text: "ما لونك المفضل؟", options: ["أحمر", "أزرق", "أخضر", "أسود"] },
-  { text: "أين تسكن؟", options: ["القاهرة", "الإسكندرية", "المنصورة", "غير ذلك"] }
+  { q: "ما اسمك؟", options: ["يوسف", "أحمد", "محمود", "ليان"], answer: 0 },
+  { q: "عمرك كام؟", options: ["18", "21", "25", "30"], answer: 1 },
+  { q: "ما لون السماء؟", options: ["أزرق", "أحمر", "أصفر", "أخضر"], answer: 0 }
 ];
 
-let currentIndex = 0;
-let answers = {};
-let flagged = new Set();
+let currentQuestion = 0;
+let answers = [];
+let score = 0;
+let timer;
+let timeLeft = 60; // ثانية
 
-const container = document.getElementById("question-container");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-const flagBtn = document.getElementById("flag");
+const questionContainer = document.getElementById("question-container");
+const optionsContainer = document.getElementById("options");
+const timeDisplay = document.getElementById("time");
 
-function loadQuestion(index) {
-  const q = questions[index];
-  container.innerHTML = `
-    <h3>س${index+1}: ${q.text}</h3>
-    <div class="options">
-      ${q.options.map((opt, i) => `
-        <label>
-          <input type="radio" name="q${index}" value="${opt}" 
-          ${answers[index] === opt ? "checked" : ""}>
-          ${opt}
-        </label>
-      `).join("")}
-    </div>
-  `;
+function loadQuestion() {
+  let q = questions[currentQuestion];
+  questionContainer.textContent = q.q;
+  optionsContainer.innerHTML = "";
+
+  q.options.forEach((opt, i) => {
+    let btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(i);
+    optionsContainer.appendChild(btn);
+  });
 }
 
-function saveAnswer() {
-  const selected = document.querySelector(`input[name="q${currentIndex}"]:checked`);
-  if (selected) {
-    answers[currentIndex] = selected.value;
-  }
+function selectAnswer(i) {
+  answers[currentQuestion] = i;
 }
 
-prevBtn.addEventListener("click", () => {
-  saveAnswer();
-  if (currentIndex > 0) {
-    currentIndex--;
-    loadQuestion(currentIndex);
-  }
-});
-
-nextBtn.addEventListener("click", () => {
-  saveAnswer();
-  if (currentIndex < questions.length - 1) {
-    currentIndex++;
-    loadQuestion(currentIndex);
+document.getElementById("next").onclick = () => {
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    loadQuestion();
   } else {
-    alert("انتهيت من الاختبار 🎉");
-    console.log("الإجابات:", answers, "المؤشرات:", flagged);
+    finishExam();
   }
-});
+};
 
-flagBtn.addEventListener("click", () => {
-  if (flagged.has(currentIndex)) {
-    flagged.delete(currentIndex);
-    alert("تمت إزالة الإشارة من السؤال");
-  } else {
-    flagged.add(currentIndex);
-    alert("تم وضع إشارة على السؤال");
+document.getElementById("prev").onclick = () => {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    loadQuestion();
   }
-});
+};
 
-loadQuestion(currentIndex);
+function startTimer() {
+  timer = setInterval(() => {
+    timeLeft--;
+    let min = Math.floor(timeLeft / 60);
+    let sec = timeLeft % 60;
+    timeDisplay.textContent = `${min}:${sec.toString().padStart(2, "0")}`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      finishExam();
+    }
+  }, 1000);
+}
+
+function finishExam() {
+  clearInterval(timer);
+  score = answers.filter((a, i) => a === questions[i].answer).length;
+
+  // ✅ هنا بنبعت النتيجة للـ Google Sheet
+  fetch("https://script.google.com/macros/s/AKfycbx022lpkaJWjcP6quXFuGk_NQ5v8kEopy4YBvAPKojWUwdue4ttApB3iuqg-iK7NQlE/exec", {
+    method: "POST",
+    body: JSON.stringify({ name: "Yousef", age: "21", score: score }),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(r => r.text())
+  .then(msg => {
+    alert(`انتهى الاختبار!\nدرجتك: ${score}/${questions.length}\n${msg}`);
+  })
+  .catch(err => console.error(err));
+}
+
+// بدء الامتحان
+loadQuestion();
+startTimer();
