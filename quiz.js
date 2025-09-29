@@ -5,22 +5,11 @@ let questionsPerSection = 24;
 let currentIndex = 0;
 let timeLeft = 25 * 60;
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-let questions = shuffle(
-  Array.from({ length: questionsPerSection }, (_, i) => ({
-    text: `السؤال رقم ${i + 1} في القسم ${section}`,
-    answer: null,
-    marked: false
-  }))
-);
-
+let questions = Array.from({ length: questionsPerSection }, (_, i) => ({
+  text: `السؤال رقم ${i + 1} في القسم ${section}`,
+  answer: null,
+  marked: false
+}));
 
 function updateQuestion() {
   const q = questions[currentIndex];
@@ -76,7 +65,7 @@ function reviewSection() {
 }
 
 function goTo(index) {
-  localStorage.setItem("returnTo", index);
+  currentIndex = index;
   location.reload();
 }
 
@@ -88,36 +77,16 @@ function chooseQuestion() {
 }
 
 function endSection() {
-  saveAnswer();
   if (mode === "real" && section < totalSections) {
     localStorage.setItem("section", section + 1);
     location.reload();
   } else {
-    reviewFinal();
+    alert("✅ تم إنهاء الاختبار بالكامل");
+    localStorage.clear();
+    window.location.href = "index.html";
   }
 }
 
-function reviewFinal() {
-  let html = `<h2>مراجعة نهائية لجميع الأسئلة</h2><ul>`;
-  questions.forEach((q, i) => {
-    let status = q.answer ? "✅ مجاب" : "❌ غير مجاب";
-    if (q.marked) status += " ⭐ مرجعي";
-    html += `<li>سؤال ${i + 1}: ${status} <button onclick="goTo(${i})">🔁</button></li>`;
-  });
-  html += `</ul>
-    <button onclick="goTo(0)">🔙 العودة لأول سؤال</button>
-    <button onclick="chooseQuestion()">🔍 العودة لسؤال محدد</button>
-    <button onclick="finishExam()">🏁 إنهاء الاختبار</button>`;
-  document.body.innerHTML = html;
-}
-
-function finishExam() {
-  alert("✅ تم إنهاء الاختبار بالكامل، بالتوفيق!");
-  localStorage.clear();
-  window.location.href = "index.html";
-}
-
-// عداد الوقت
 setInterval(() => {
   if (timeLeft > 0) {
     timeLeft--;
@@ -129,10 +98,4 @@ setInterval(() => {
   }
 }, 1000);
 
-// تحميل أول سؤال أو العودة لسؤال محدد
-const returnTo = localStorage.getItem("returnTo");
-if (returnTo !== null) {
-  currentIndex = parseInt(returnTo);
-  localStorage.removeItem("returnTo");
-}
 updateQuestion();
