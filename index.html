@@ -1,39 +1,79 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي التجريبي</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج الأسئلة</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>أهلاً بك في موقعي التجريبي</h1>
-        <nav>
-            <button onclick="showPage('home')">الرئيسية</button>
-            <button onclick="showPage('form')">نموذج</button>
-        </nav>
-    </header>
+  <header>
+    <h1>اختر النموذج المطلوب</h1>
+  </header>
 
-    <main>
-        <section id="home" class="page">
-            <h2>الصفحة الرئيسية</h2>
-            <p>هنا يمكن وضع أي محتوى ترغب فيه.</p>
-        </section>
+  <main>
+    <button onclick="showForm('single')">📄 قسم واحد</button>
+    <button onclick="showForm('multi')">📑 خمسة أقسام</button>
 
-        <section id="form" class="page" style="display:none;">
-            <h2>نموذج جمع البيانات</h2>
-            <form id="userForm">
-                <label>الاسم:</label>
-                <input type="text" name="name" required><br><br>
-                <label>البريد الإلكتروني:</label>
-                <input type="email" name="email" required><br><br>
-                <button type="submit">إرسال</button>
-            </form>
-            <p id="thankyou" style="display:none;">تم الإرسال بنجاح!</p>
-        </section>
-    </main>
+    <!-- Form 1 -->
+    <div id="singleForm" class="form hidden">
+      <h2>نموذج قسم واحد</h2>
+      <form>
+        <label>سؤال 1:</label>
+        <input type="text" name="q1" required>
 
-    <script src="script.js"></script>
+        <label>سؤال 2:</label>
+        <input type="text" name="q2" required>
+
+        <button type="submit">إرسال</button>
+      </form>
+    </div>
+
+    <!-- Form 2 -->
+    <div id="multiForm" class="form hidden">
+      <h2>نموذج 5 أقسام</h2>
+      <form>
+        <fieldset>
+          <legend>القسم الأول</legend>
+          <input type="text" placeholder="سؤال 1" required>
+        </fieldset>
+
+        <fieldset>
+          <legend>القسم الثاني</legend>
+          <input type="text" placeholder="سؤال 2" required>
+        </fieldset>
+
+        <fieldset>
+          <legend>القسم الثالث</legend>
+          <input type="text" placeholder="سؤال 3" required>
+        </fieldset>
+
+        <fieldset>
+          <legend>القسم الرابع</legend>
+          <input type="text" placeholder="سؤال 4" required>
+        </fieldset>
+
+        <fieldset>
+          <legend>القسم الخامس</legend>
+          <input type="text" placeholder="سؤال 5" required>
+        </fieldset>
+
+        <button type="submit">إرسال</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function showForm(type) {
+      document.getElementById("singleForm").classList.add("hidden");
+      document.getElementById("multiForm").classList.add("hidden");
+
+      if (type === "single") {
+        document.getElementById("singleForm").classList.remove("hidden");
+      } else {
+        document.getElementById("multiForm").classList.remove("hidden");
+      }
+    }
+  </script>
 </body>
 </html>
