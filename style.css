@@ -1,138 +1,58 @@
-:root{
-  --bg: #f4f7fb;
-  --card: #ffffff;
-  --muted: #6b7280;
-  --accent: #2563eb;
-  --green: #16a34a;
-  --danger: #ef4444;
-  --shadow: 0 6px 18px rgba(16,24,40,0.08);
-}
-
-*{box-sizing: border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: "Cairo", Tahoma, Arial, sans-serif;
-  background:var(--bg);
-  color:#0f172a;
+body {
+  font-family: "Cairo", sans-serif;
   direction: rtl;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  text-align: center;
+  background: #f7f9fc;
+  margin: 0;
+  padding: 0;
 }
 
-.container{
-  max-width:980px;
-  margin:24px auto;
-  padding:16px;
+.container {
+  padding: 20px;
 }
 
-/* Views */
-.view{padding:20px}
-.hidden{display:none}
-
-/* Start screen */
-.choices{
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:20px;
-}
-.card.choice{
-  width:260px;
-  background:var(--card);
-  border-radius:12px;
-  padding:18px;
-  box-shadow:var(--shadow);
-  cursor:pointer;
-  transition:transform .15s, box-shadow .15s;
-  text-align:center;
-}
-.card.choice:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(16,24,40,0.12); }
-.card.choice .icon{ font-size:42px; margin-bottom:8px }
-.card.choice h3{ margin:8px 0; }
-.muted{ color:var(--muted); font-size:14px; margin-top:12px; text-align:center; }
-
-/* Quiz header */
-.quiz-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:6px;
-  margin-bottom:12px;
-}
-.badge{
-  display:inline-block;
-  background:#eef2ff;
-  color:#1e3a8a;
-  padding:6px 10px;
-  border-radius:999px;
-  font-weight:600;
-  margin:4px;
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-/* Timer */
-#timerBarWrap{ margin-bottom:14px }
-#timerText{ text-align:center; font-weight:700; color:var(--danger); margin-bottom:8px }
-#timerBar{ background:#fee2e2; height:10px; border-radius:10px; overflow:hidden }
-#timerBarFill{ height:100%; background:var(--danger); width:100%; transition:width 1s linear }
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 250px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
 
-/* Question card */
-.question-card{
-  background:var(--card);
-  border-radius:12px;
-  padding:18px;
-  box-shadow:var(--shadow);
-  margin-bottom:12px;
+.card:hover {
+  transform: scale(1.05);
 }
-.question-text{ font-size:18px; font-weight:700; margin-bottom:12px; text-align:right; }
-.options label{
-  display:block;
-  background:#f8fafc;
-  padding:10px 12px;
-  border-radius:8px;
-  margin:8px 0;
-  cursor:pointer;
-  border:1px solid transparent;
-  transition:background .12s, border-color .12s;
-  text-align:right;
-}
-.options input{ margin-left:8px }
-.options label:hover{ background:#eef2ff; border-color:#dbeafe }
 
-/* Controls */
-.controls{ display:flex; justify-content:center; gap:12px; margin-top:6px; }
-.btn{
-  padding:10px 14px;
-  border-radius:10px;
-  border:none;
-  background:#e6eefc;
-  color:#0f172a;
-  cursor:pointer;
-  font-weight:700;
+.hidden {
+  display: none;
 }
-.btn.primary{ background:var(--accent); color:white }
-.icon-btn{ background:transparent; border:none; font-size:20px; cursor:pointer }
 
-/* Review grid */
-.review-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(60px,1fr));
-  gap:10px;
-  margin:14px 0 20px 0;
+#question {
+  font-size: 20px;
+  margin: 20px 0;
 }
-.review-item{
-  padding:10px;
-  border-radius:8px;
-  text-align:center;
-  cursor:pointer;
-  border:1px solid #e6eefc;
-  background:#fff;
-  font-weight:700;
-}
-.review-item.answered{ background:#dcfce7; border-color:#bbf7d0 }
-.review-item.unanswered{ background:#fee2e6; border-color:#fecaca }
-.review-item.flagged{ background:#fff7cc; border-color:#fde68a }
 
-/* summary */
-#summaryContent{ background:var(--card); padding:16px; border-radius:10px; box-shadow:var(--shadow) }
+#options button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 200px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+#timer {
+  font-size: 18px;
+  color: red;
+  margin: 10px;
+}
