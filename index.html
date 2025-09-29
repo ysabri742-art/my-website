@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي التجريبي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>أهلاً بك في موقعي التجريبي</h1>
+        <nav>
+            <button onclick="showPage('home')">الرئيسية</button>
+            <button onclick="showPage('form')">نموذج</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="page">
+            <h2>الصفحة الرئيسية</h2>
+            <p>هنا يمكن وضع أي محتوى ترغب فيه.</p>
+        </section>
+
+        <section id="form" class="page" style="display:none;">
+            <h2>نموذج جمع البيانات</h2>
+            <form id="userForm">
+                <label>الاسم:</label>
+                <input type="text" name="name" required><br><br>
+                <label>البريد الإلكتروني:</label>
+                <input type="email" name="email" required><br><br>
+                <button type="submit">إرسال</button>
+            </form>
+            <p id="thankyou" style="display:none;">تم الإرسال بنجاح!</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
