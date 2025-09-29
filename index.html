@@ -3,13 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>اختبار محاكي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>اختر نوع الاختبار</h1>
-    <button onclick="startQuickMock()">🧪 اختبار محاكي سريع</button>
-    <button onclick="startRealMock()">🧪 اختبار محاكي واقعي</button>
+  <div class="hero">
+    <h1 class="fade-in">اختر نوع الاختبار</h1>
+    <div class="card-container fade-in">
+      <div class="card" onclick="startQuickMock()">
+        <div class="icon">⚡</div>
+        <h2>اختبار محاكي سريع</h2>
+        <p>24 سؤال في 25 دقيقة لتجربة سريعة ومركزة</p>
+        <button>ابدأ الآن</button>
+      </div>
+
+      <div class="card" onclick="startRealMock()">
+        <div class="icon">🎯</div>
+        <h2>اختبار محاكي واقعي</h2>
+        <p>120 سؤال موزعة على 5 أقسام لمحاكاة كاملة للواقع</p>
+        <button>ابدأ الآن</button>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
