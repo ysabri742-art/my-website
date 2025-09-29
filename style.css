@@ -1,0 +1,37 @@
+body {
+  font-family: "Cairo", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f9;
+  text-align: center;
+}
+
+header {
+  background: #6200ea;
+  color: white;
+  padding: 20px;
+}
+
+main {
+  margin: 30px;
+}
+
+button {
+  background: #03dac6;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #018786;
+  color: white;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 10px;
+  background: #ddd;
+}
