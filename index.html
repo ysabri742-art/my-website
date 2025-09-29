@@ -1,19 +1,16 @@
-<div class="card-grid">
-  <div class="card" onclick="startQuickMock()">
-    <div class="card-header">
-      <span class="card-icon">⚡</span>
-      <h2>محاكي سريع</h2>
-    </div>
-    <p>اختبار مكوّن من 24 سؤال في 25 دقيقة لتجربة سريعة ومركزة</p>
-    <button>ابدأ الآن</button>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>اختبار محاكي</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>اختر نوع الاختبار</h1>
+    <button onclick="startQuickMock()">🧪 اختبار محاكي سريع</button>
+    <button onclick="startRealMock()">🧪 اختبار محاكي واقعي</button>
   </div>
-
-  <div class="card" onclick="startRealMock()">
-    <div class="card-header">
-      <span class="card-icon">🎯</span>
-      <h2>محاكي واقعي</h2>
-    </div>
-    <p>اختبار كامل من 120 سؤال موزّع على 5 أقسام، كل قسم مدته 25 دقيقة</p>
-    <button>ابدأ الآن</button>
-  </div>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
