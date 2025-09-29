@@ -5,11 +5,22 @@ let questionsPerSection = 24;
 let currentIndex = 0;
 let timeLeft = 25 * 60;
 
-let questions = Array.from({ length: questionsPerSection }, (_, i) => ({
-  text: `السؤال رقم ${i + 1} في القسم ${section}`,
-  answer: null,
-  marked: false
-}));
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+let questions = shuffle(
+  Array.from({ length: questionsPerSection }, (_, i) => ({
+    text: `السؤال رقم ${i + 1} في القسم ${section}`,
+    answer: null,
+    marked: false
+  }))
+);
+
 
 function updateQuestion() {
   const q = questions[currentIndex];
