@@ -57,23 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <h2>انتهى الاختبار</h2>
       <p>نتيجتك: ${score} من ${questions.length}</p>
     `;
-
-    // إرسال النتيجة لجوجل شيت
-    fetch("https://script.google.com/macros/s/AKfycbx022lpkaJWjcP6quXFuGk_NQ5v8kEopy4YBvAPKojWUwdue4ttApB3iuqg-iK7NQlE/exec", {
-      method: "POST",
-      body: JSON.stringify({
-        name: "يوسف",
-        score: score,
-        total: questions.length,
-        date: new Date().toLocaleString()
-      }),
-      headers: { "Content-Type": "application/json" }
-    }).then(res => res.text())
-      .then(data => console.log("تم الحفظ:", data))
-      .catch(err => console.error("خطأ:", err));
   }
 
-  // ربط الأزرار بعد تحميل الصفحة
+  // ربط الأزرار
   document.getElementById("next").addEventListener("click", () => {
     saveAnswer();
     if (currentQuestion < questions.length - 1) {
