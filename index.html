@@ -2,78 +2,22 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نموذج الأسئلة</title>
+  <title>اختبار تجريبي</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>اختر النموذج المطلوب</h1>
-  </header>
-
-  <main>
-    <button onclick="showForm('single')">📄 قسم واحد</button>
-    <button onclick="showForm('multi')">📑 خمسة أقسام</button>
-
-    <!-- Form 1 -->
-    <div id="singleForm" class="form hidden">
-      <h2>نموذج قسم واحد</h2>
-      <form>
-        <label>سؤال 1:</label>
-        <input type="text" name="q1" required>
-
-        <label>سؤال 2:</label>
-        <input type="text" name="q2" required>
-
-        <button type="submit">إرسال</button>
-      </form>
+  <div id="app">
+    <h1>اختبار تجريبي</h1>
+    <div id="timer">الوقت: 25:00</div>
+    <div id="question-container"></div>
+    <div id="controls">
+      <button id="prev">⬅ السابق</button>
+      <button id="flag">🚩 إشارة</button>
+      <button id="next">التالي ➡</button>
     </div>
+    <div id="review" class="hidden"></div>
+  </div>
 
-    <!-- Form 2 -->
-    <div id="multiForm" class="form hidden">
-      <h2>نموذج 5 أقسام</h2>
-      <form>
-        <fieldset>
-          <legend>القسم الأول</legend>
-          <input type="text" placeholder="سؤال 1" required>
-        </fieldset>
-
-        <fieldset>
-          <legend>القسم الثاني</legend>
-          <input type="text" placeholder="سؤال 2" required>
-        </fieldset>
-
-        <fieldset>
-          <legend>القسم الثالث</legend>
-          <input type="text" placeholder="سؤال 3" required>
-        </fieldset>
-
-        <fieldset>
-          <legend>القسم الرابع</legend>
-          <input type="text" placeholder="سؤال 4" required>
-        </fieldset>
-
-        <fieldset>
-          <legend>القسم الخامس</legend>
-          <input type="text" placeholder="سؤال 5" required>
-        </fieldset>
-
-        <button type="submit">إرسال</button>
-      </form>
-    </div>
-  </main>
-
-  <script>
-    function showForm(type) {
-      document.getElementById("singleForm").classList.add("hidden");
-      document.getElementById("multiForm").classList.add("hidden");
-
-      if (type === "single") {
-        document.getElementById("singleForm").classList.remove("hidden");
-      } else {
-        document.getElementById("multiForm").classList.remove("hidden");
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
