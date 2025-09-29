@@ -65,7 +65,7 @@ function reviewSection() {
 }
 
 function goTo(index) {
-  currentIndex = index;
+  localStorage.setItem("returnTo", index);
   location.reload();
 }
 
@@ -77,16 +77,36 @@ function chooseQuestion() {
 }
 
 function endSection() {
+  saveAnswer();
   if (mode === "real" && section < totalSections) {
     localStorage.setItem("section", section + 1);
     location.reload();
   } else {
-    alert("✅ تم إنهاء الاختبار بالكامل");
-    localStorage.clear();
-    window.location.href = "index.html";
+    reviewFinal();
   }
 }
 
+function reviewFinal() {
+  let html = `<h2>مراجعة نهائية لجميع الأسئلة</h2><ul>`;
+  questions.forEach((q, i) => {
+    let status = q.answer ? "✅ مجاب" : "❌ غير مجاب";
+    if (q.marked) status += " ⭐ مرجعي";
+    html += `<li>سؤال ${i + 1}: ${status} <button onclick="goTo(${i})">🔁</button></li>`;
+  });
+  html += `</ul>
+    <button onclick="goTo(0)">🔙 العودة لأول سؤال</button>
+    <button onclick="chooseQuestion()">🔍 العودة لسؤال محدد</button>
+    <button onclick="finishExam()">🏁 إنهاء الاختبار</button>`;
+  document.body.innerHTML = html;
+}
+
+function finishExam() {
+  alert("✅ تم إنهاء الاختبار بالكامل، بالتوفيق!");
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+
+// عداد الوقت
 setInterval(() => {
   if (timeLeft > 0) {
     timeLeft--;
@@ -98,4 +118,10 @@ setInterval(() => {
   }
 }, 1000);
 
+// تحميل أول سؤال أو العودة لسؤال محدد
+const returnTo = localStorage.getItem("returnTo");
+if (returnTo !== null) {
+  currentIndex = parseInt(returnTo);
+  localStorage.removeItem("returnTo");
+}
 updateQuestion();
