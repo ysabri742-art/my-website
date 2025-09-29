@@ -1,88 +1,32 @@
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #f9f9f9;
+  direction: rtl;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-.card {
-  background: linear-gradient(to bottom right, #ffffff, #f0f4f8);
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  width: 320px;
-  max-width: 90%;
-  padding: 30px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.8s ease;
+.container {
+  margin-top: 100px;
+}
+
+button {
+  padding: 15px 30px;
+  margin: 20px;
+  font-size: 18px;
   cursor: pointer;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+.quiz-container {
+  padding: 30px;
 }
 
-.card-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#timer {
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
-.card-icon {
-  font-size: 48px;
-  color: #3498db;
-  margin-bottom: 10px;
-}
-
-.card h2 {
-  font-size: 22px;
-  color: #2c3e50;
-  margin: 0;
-}
-
-.card p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.card button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 24px;
-  font-size: 15px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.card button:hover {
-  background-color: #2980b9;
-}
-
-/* تأثير دخول */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* دعم الموبايل */
-@media (max-width: 600px) {
-  .card-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 90%;
-  }
+.navigation button {
+  margin: 10px;
 }
